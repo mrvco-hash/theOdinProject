@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #ffffff;
+}
+
+html {
+    background-color: #1F2937;
+    font-family: Fredoka, sans-serif;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+/* header */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: auto;
+    width: 80%;
+    padding: 1em;
+    color: #ffffff;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+    color: #F9FAF8;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 2em;
+}
+
+.cta {
+    background-color: #3882F6;
+    padding: 1em;
+    width: 150px;
+    line-height: 25%;
+}
+
+/* Main */
+.heroMainText {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    padding: 2.5em 0 5em 0;
+    gap: 10em;
+    width: 80%;
+    margin: auto;
+}
+
+.heroMainText div {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.heroMainText h1 {
+    font-size: 48px;
+    color: #F9FAF8;
+}
+
+.banner__img {
+    background-color: #e2e2e25f;
+    padding: 5em;
+    width: 50%;
+}
+
+.heroSecondary {
+    color: #E5E7EB;
+    font-size: 18px;
+}
+
+.moreInformation {
+    display: flex;
+    flex-direction: column;
+    background-color: #F9FAF8;
+    padding: 3em;
+}
+
+.moreInformation h2 {
+    text-align: center;
+    color: #1F2937;
+    margin-bottom: 3em;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}
+
+.card p {
+    text-align: center;
+    color: #1F2937;
+}
+
+.cardIllustration {
+    height: 7em;
+    width: 7em;
+    border: #3882F6 4px solid;
+    border-radius: 10px;
+}
+
+.inspiringQuote {
+    background-color: #E5E7EB;
+    padding: 10%;
+}
+
+.inspiringQuote > p {
+    color: #1F2937;
+    font-weight: light;
+    font-style: italic;
+    font-size: 36px;
+}
+
+.quoteAutor {
+    font-weight: 900;
+    margin-left: 70%;
+}
+
+.ctaSection {
+    padding: 6em;
+    background-color: #F9FAF8;
+}
+
+
+.ctaBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.5em;
+    background-color: #3882F6;
+    border-radius: 15px;
+}
+
+
+/* Footer*/
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4em;
+}
+
+
+/* Generic class*/
+
+.links {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.cta {
+    border: 3px #ffffff solid;
+    border-radius: 10px;
+}
+
+
