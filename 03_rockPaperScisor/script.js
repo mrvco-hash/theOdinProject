@@ -71,11 +71,13 @@ const playRound = function (computerChoice, humanChoice) {
 
 const defineWinner = (computer, human) => {
     if (computer == 5) {
-        divResults.innerHTML = `<p>Computer Win </p>`
+        divResults.innerHTML = `<p>Computer Win </p>`;
+        return true;
     } else if (human == 5) {
-        divResults.innerHTML = `<p>human Win </p>`
+        divResults.innerHTML = `<p>human Win </p>`;
+        return true;
     } else {
-        return false
+        return false;
     }
 }
 
@@ -86,34 +88,17 @@ let scisorButton = document.querySelector('#scisor');
 rockButton.addEventListener('click', function chooseRock() {
     playRound(getComputerChoice(), 'rock')
     defineWinner(computerScore, humanScore)
-    if (!defineWinner) {
-        rockButton.removeEventListener('click', function chooseRock() {
-            playRound(getComputerChoice(), 'rock')
-            defineWinner(computerScore, humanScore)
-        })
-    }
 });
 
 paperButton.addEventListener('click', function chooseRock() {
     playRound(getComputerChoice(), 'paper')
     defineWinner(computerScore, humanScore)
-    if (!defineWinner) {
-        paperButton.removeEventListener('click', function chooseRock() {
-            playRound(getComputerChoice(), 'paper')
-            defineWinner(computerScore, humanScore)
-        })
-    }
 });
+
 
 scisorButton.addEventListener('click', function chooseRock() {
     playRound(getComputerChoice(), 'scisor')
     defineWinner(computerScore, humanScore)
-    if (!defineWinner) {
-        scisorButton.removeEventListener('click', function chooseRock() {
-            playRound(getComputerChoice(), 'rock')
-            defineWinner(computerScore, humanScore)
-        })
-    }
 });
 
 
