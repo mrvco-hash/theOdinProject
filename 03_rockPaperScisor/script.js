@@ -3,24 +3,24 @@ let computerScore = 0;
 let divResults = document.querySelector('.results')
 
 
-function getComputerChoice() {
+ const getComputerChoice = function () {
     const possibleChoices = ["rock", "paper", "scisor"];
     return (possibleChoices[Math.floor(Math.random() * possibleChoices.length)]);
 } 
 
-function getHumanChoice() {
-    let humanChoice;
-    while (true) {
-        humanChoice = prompt("Make your choice : rock paper or scisor.").toLowerCase();
-        if ((humanChoice == "rock") || (humanChoice == "paper") || (humanChoice == "scisor")) {
-            break;
-        }
-    }
-    console.log(humanChoice);
-    return humanChoice;
-}
+// const getHumanChoice = function () {
+//     let humanChoice;
+//     while (true) {
+//         humanChoice = prompt("Make your choice : rock paper or scisor.").toLowerCase();
+//         if ((humanChoice == "rock") || (humanChoice == "paper") || (humanChoice == "scisor")) {
+//             break;
+//         }
+//     }
+//     console.log(humanChoice);
+//     return humanChoice;
+// }
 
-function playRound(computerChoice, humanChoice) {
+const playRound = function (computerChoice, humanChoice) {
 
     function win(computer, human) {
         humanScore++
@@ -69,48 +69,53 @@ function playRound(computerChoice, humanChoice) {
     }
 }
 
+const defineWinner = (computer, human) => {
+    if (computer == 5) {
+        divResults.innerHTML = `<p>Computer Win </p>`
+    } else if (human == 5) {
+        divResults.innerHTML = `<p>human Win </p>`
+    } else {
+        return false
+    }
+}
+
 let rockButton = document.querySelector('#rock');
 let paperButton = document.querySelector('#paper');
 let scisorButton = document.querySelector('#scisor');
 
-rockButton.addEventListener('click', () => {
-    let playerSelection = 'rock';
-    playRound(getComputerChoice(), playerSelection);
-    function defineWinner(computer, human) {
-    if (computer == 5) {
-        divResults.innerHTML = `<p>Computer Win </p>`
-    } else if (human == 5) {
-        divResults.innerHTML = `<p>human Win </p>`
-    }
-}
+rockButton.addEventListener('click', function chooseRock() {
+    playRound(getComputerChoice(), 'rock')
     defineWinner(computerScore, humanScore)
-})
+    if (!defineWinner) {
+        rockButton.removeEventListener('click', function chooseRock() {
+            playRound(getComputerChoice(), 'rock')
+            defineWinner(computerScore, humanScore)
+        })
+    }
+});
 
-paperButton.addEventListener('click', () => {
-    let playerSelection = 'paper';
-    playRound(getComputerChoice(), playerSelection);
-    function defineWinner(computer, human) {
-    if (computer == 5) {
-        divResults.innerHTML = `<p>Computer Win </p>`
-    } else if (human == 5) {
-        divResults.innerHTML = `<p>human Win </p>`
-    }
-}
+paperButton.addEventListener('click', function chooseRock() {
+    playRound(getComputerChoice(), 'paper')
     defineWinner(computerScore, humanScore)
-})
+    if (!defineWinner) {
+        paperButton.removeEventListener('click', function chooseRock() {
+            playRound(getComputerChoice(), 'paper')
+            defineWinner(computerScore, humanScore)
+        })
+    }
+});
 
-scisorButton.addEventListener('click', () => {
-    let playerSelection = 'scisor';
-    playRound(getComputerChoice(), playerSelection);
-    function defineWinner(computer, human) {
-    if (computer == 5) {
-        divResults.innerHTML = `<p>Computer Win </p>`
-    } else if (human == 5) {
-        divResults.innerHTML = `<p>human Win </p>`
-    }
-}
+scisorButton.addEventListener('click', function chooseRock() {
+    playRound(getComputerChoice(), 'scisor')
     defineWinner(computerScore, humanScore)
-})
+    if (!defineWinner) {
+        scisorButton.removeEventListener('click', function chooseRock() {
+            playRound(getComputerChoice(), 'rock')
+            defineWinner(computerScore, humanScore)
+        })
+    }
+});
+
 
 // function playGame() {
 //     i = 0
