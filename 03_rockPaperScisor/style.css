@@ -1,0 +1,33 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    border: red 1px solid;
+    font-size: 1.005em;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 80%;
+    margin: 1em auto;
+    padding: 1em;
+}
+
+main > .gameButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    margin: 1em;
+    margin-top: 10em;
+    padding: 1em 0;
+    gap: 6em;
+}
+
+main > .results {
+    height: 3em;
+    width: auto;
+}
