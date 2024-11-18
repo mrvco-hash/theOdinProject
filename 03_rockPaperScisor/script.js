@@ -1,105 +1,86 @@
 let humanScore = 0;
 let computerScore = 0;
-let divResults = document.querySelector('.results');
-let gameOver = false;
 
-const getComputerChoice = function () {
-    const possibleChoices = ["rock", "paper", "scisor"];
-    return (possibleChoices[Math.floor(Math.random() * possibleChoices.length)]);
+function getComputerChoice() {
+    let choices = ["rock", "paper", "scisor"];
+    return choices[Math.floor(Math.random() * 3)];
 }
 
-const playRound = function (computerChoice, humanChoice) {
+function getHumanChoice() {
+    let choice = prompt("Enter your choice. Rock, Paper or Scisor :").toLowerCase();
+    if (choice === "rock" || choice === "paper" || choice === "scisor") {
+        return choice;
+    } else {
+        alert("Invalid choice, please retry.");
+        return getHumanChoice();
+    }
+}
 
-    function win(computer, human) {
-        humanScore++;
-        divResults.innerHTML =
-        `<p> You win, the ${human} beats the ${computer} </p>
-        <p> Human score : ${humanScore} </p>
-        <p> Computer score : ${computerScore} </p>`;
+function playRound(human, computer) {
+
+    function win(human, computer) {
+        console.log(`You win. computer choice : ${computer}. Your choice : ${human}
+Computer score : ${computerScore}
+Human Score : ${humanScore}`)
+    }
+    function lose(human, computer) {
+        console.log(`You lose. computer choice : ${computer}. Your choice : ${human}
+Computer score : ${computerScore}
+Human Score : ${humanScore}`)
     }
 
-    function lose(computer, human) {
-        computerScore++;
-        divResults.innerHTML = 
-        `<p> You lose, the ${computer} beats the ${human} </p>
-        <p> Human score : ${humanScore} </p>
-        <p> Computer score : ${computerScore} </p>`;
+    if (human === computer) {
+        console.log(`It's a tie. computer choice : ${computer}. Your choice : ${human}
+Computer score : ${computerScore}
+Human Score : ${humanScore}`);
     }
-
-    if (humanChoice === computerChoice) {
-        divResults.innerHTML = 
-        `<p> It's a tie! Your choice : ${humanChoice}. Computer choice : ${computerChoice}. </p>
-        <p> Human score : ${humanScore} </p>
-        <p> Computer score : ${computerScore} </p>`;
-    }
-
-    switch (humanChoice) {
-        case "rock":
-            if (computerChoice == "paper") {
-                return lose(computerChoice, humanChoice);
-            } else if (computerChoice == "scisor") {
-                return win(computerChoice, humanChoice);
+    switch (human) {
+        case "rock" :
+            if (computer === "paper") {
+                computerScore++;
+                lose(human, computer)
+            } else if (computer === "scisor") {
+                humanScore++;
+                win(human, computer)
             }
             break;
-        case "paper":
-            if (computerChoice == "rock") {
-                return win(computerChoice, humanChoice);
-            } else if (computerChoice == "scisor") {
-                return lose(computerChoice, humanChoice);
+        case "paper" :
+            if (computer === "scisor") {
+                computerScore++;
+                lose(human, computer)
+            } else if (computer === "rock") {
+                humanScore++;
+                win(human, computer)
             }
             break;
-        case "scisor":
-            if (computerChoice == "paper") {
-                return win(computerChoice, humanChoice);
-            } else if (computerChoice == "rock") {
-                return lose(computerChoice, humanChoice);
+        case "scisor" :
+            if (computer === "rock") {
+                computerScore++;
+                lose(human, computer)
+            } else if (computer === "paper") {
+                humanScore++;
+                win(human, computer)
             }
             break;
     }
 }
 
-const defineWinner = (computer, human) => {
-    if (computer >= 5) {
-        divResults.innerHTML = `<p>Computer Wins!</p>`;
-        gameOver = true;
-    } 
-    if (human >= 5) {
-        divResults.innerHTML = `<p>Human Wins!</p>`;
-        gameOver = true;
+function playGame() {
+    let i = 0;
+    while (i < 5) {
+        playRound(getHumanChoice(), getComputerChoice());
+        i++
     }
-    
-    if (gameOver) {
-        rockButton.removeEventListener('click', chooseRock);
-        paperButton.removeEventListener('click', choosePaper);
-        scisorButton.removeEventListener('click', chooseScisor);
+    if (humanScore > computerScore) {
+        console.log("Humanity win's")
+    } else if (computerScore > humanScore) {
+        console.log("Terminator win's")
+    } else {
+        console.log("It's a tie, both live in harmony")
     }
+    console.log(`Final Scores: 
+Human: ${humanScore}
+Computer: ${computerScore}`);
 }
 
-let rockButton = document.querySelector('#rock');
-let paperButton = document.querySelector('#paper');
-let scisorButton = document.querySelector('#scisor');
-
-const chooseRock = () => {
-    if (!gameOver) {
-        playRound(getComputerChoice(), 'rock');
-        defineWinner(computerScore, humanScore);
-    }
-}
-
-const choosePaper = () => {
-    if (!gameOver) {
-        playRound(getComputerChoice(), 'paper');
-        defineWinner(computerScore, humanScore);
-    }
-}
-
-const chooseScisor = () => {
-    if (!gameOver) {
-        playRound(getComputerChoice(), 'scisor');
-        defineWinner(computerScore, humanScore);
-    }
-}
-
-rockButton.addEventListener('click', chooseRock);
-paperButton.addEventListener('click', choosePaper);
-scisorButton.addEventListener('click', chooseScisor);
+playGame()
